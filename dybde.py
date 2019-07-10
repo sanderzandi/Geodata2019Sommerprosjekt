@@ -17,22 +17,42 @@ with np.nditer(array) as it: # Iterate through NumpyArray
         if x != 0: # Remove values equal to 0
             depthlist.append(x) # Add other values to list
 
-depthlist.sort()
-new_np = np.array(depthlist).astype(float)
-raster_threshold = new_np.item(int(user_threshold))
+depthlist.sort() # Sor list
+new_np = np.array(depthlist).astype(float) # Create new NumPyArray with depth data as floats
+raster_threshold = new_np.item(int(user_threshold)) 
 #raster_threshold = new_np[int(user_threshold)]
 #arcpy.AddMessage(new_np)
-filteredRaster = arcpy.sa.ExtractByAttributes(clip,"VALUE < {0}".format(raster_threshold)) 
-points = arcpy.RasterToPoint_conversion(filteredRaster)
-arcpy.SetParameter(1,points)
+filteredRaster = arcpy.sa.ExtractByAttributes(clip,"VALUE < {0}".format(raster_threshold)) # Get values from raster...?
+points = arcpy.RasterToPoint_conversion(filteredRaster) # Convert raster to points
+arcpy.SetParameter(1,points) # Set points in ArcGis, allows for points to be drawn
 
-# cursor1 = arcpy.da.SearchCursor(points,["SHAPE@X","SHAPE@Y"])
-# x=0
-# y=0
-# for row1 in cursor1:
-#    x=row1[0]
-#    y=row1[1]
-#    arcpy.AddMessage(str(x)+"  "+str(y))
+previousRowsList=[]
+k=0
+cursor1 = arcpy.da.SearchCursor(points,["SHAPE@X","SHAPE@Y"])
+arcpy.AddMessage(points)
+for row1 in cursor1:
+    k=k+1
+    x=row1[0]
+    y=row1[1]
+    previousRowsList.append([x,y])
+    #arcpy.AddMessage(previousRowsList)
+    cursor=arcpy.da.UpdateCursor(points,["SHAPE@X","SHAPE@Y"])
+    for row in cursor:
+        if (row[0]<(x+50) and row[1]<(y+50)) and (row[0]>(x-50) and row[1]>(y-50)) and ([row1[0],row1[1]] != [row[0],row[1]]) and (row not in previousRowsList):
+            arcpy.AddMessage(row)
+            cursor.deleteRow()
+    del cursor
+    #arcpy.AddMessage(row1)
+del cursor1
+arcpy.AddMessage(k)
+
+my_buff=arcpy.Buffer_analysis(points,'in_memory/myBuffer',25)
+arcpy.SetParameter(3,my_buff)
+
+#my_buff=arcpy.Buffer_analysis(points,'in_memory/myBuffer',50)
+#arcpy.SetParameter(3,my_buff)
+
+
 
 
 # with arcpy.da.UpdateCursor(points,'*') as cursor:
@@ -40,10 +60,6 @@ arcpy.SetParameter(1,points)
 #    for row in cursor:
 #        if row[0]<x+25 or row[1]<y+25:
 #            cursor.deleteRow()
-
-
-my_buff=arcpy.Buffer_analysis(points,'in_memory/myBuffer',50)
-arcpy.SetParameter(3,my_buff)
 
 
 #arcpy.Clip_management(raster,"5.5 62.5 5.8 62.8","C:\\Users\\student\\Documents\\ArcGIS\\Projects\\MyProject3\\MyProject3.gdb\\clip.tif")
