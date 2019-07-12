@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>KYMA - kart forst</title>
+
+    <!-- BOOTSTRAP API KALL -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--ARCGIS CSS-->
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.12/esri/themes/dark/main.css"
+    />
+
+    <!-- EGEN CSS-->
+    <link rel="stylesheet" type="text/css" href="range-slider.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <!--ARCGIS API-->
+    <script src="https://js.arcgis.com/4.12/"></script>
+
+    <!-- HENTE WEBMAP + WIDGETS FRA ARCGIS API-->
+    <script>
+      require([
+        "esri/widgets/Sketch",
+        "esri/WebMap",
+        "esri/layers/GraphicsLayer",
+        "esri/views/MapView",
+        "esri/widgets/LayerList",
+        "esri/widgets/Search",
+        "esri/tasks/Geoprocessor",
+        "esri/tasks/support/FeatureSet"
+      ], function(
+        Sketch,
+        WebMap,
+        GraphicsLayer,
+        MapView,
+        LayerList,
+        Search,
+        Geoprocessor,
+        FeatureSet
+      ) {
+        /*var locatorTask = new Locator({
+          url:
+            "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
+        }); */
+        const layer = new GraphicsLayer();
+
+        var map = new WebMap({
+          portalItem: {
+            id: "d63fb0befa1843788d27e39c8b0ad116"
+          }
+        });
+
+        //*** ADD ***//
+        var view = new MapView({
+          container: "content",
+          map: map
+        });
+
+        view.when(function() {
+          var layerList = new LayerList({
+            view: view
+          });
+
+          // Add widget to the top right corner of the view
+          view.ui.add(layerList, "top-right");
+        });
+
+        view.when(function() {
+          var searchWidget = new Search({ view: view });
+
+          view.ui.add(searchWidget, "top-left");
+        });
+
+        view.when(function() {
+          var sketch = new Sketch({
+            layer: layer,
+            view: view
+          });
+
+          view.ui.add(sketch, "bottom-right");
+          map.add(layer);
+          console.log(layer);
+        });
+
+        /* function hentGPtool() {
+          var gpURL =
+            "https://student2019.geodata.no/arcgis/rest/services/GPTools/GPTest/GPServer/GPTest";
+          console.log(gpURL);
+
+          var gp = new Geoprocessor(gpURL);
+          var fSet = new FeatureSet();
+          fSet.features = layer.graphics;
+
+          var params = {
+            Polygon: layer.graphics.items[0],
+            Navn: "Jacob",
+            Prop: "spatialReference"
+          };
+          console.log("hei");
+          gp.execute(params).then(function(valReturn) {
+            console.log(valReturn);
+          });
+        } */
+        document.getElementById("gpTool").onclick = function() {
+          console.log(document.getElementById("range1").value);
+
+          var radio = document.getElementById("exampleRadios1");
+          if (radio.checked) {
+            console.log(radio.value);
+          }
+
+          console.log(document.getElementById("range1").value);
+
+          var gpURL =
+            "https://student2019.geodata.no/arcgis/rest/services/GPTools/GPTest/GPServer/GPTest";
+          console.log(gpURL);
+
+          var gp = new Geoprocessor(gpURL);
+          var fSet = new FeatureSet();
+          fSet.features = layer.graphics.items[0];
+          fSet.spatialreference = console.log(fSet);
+
+          var params = {
+            Polygon: fSet,
+            Navn: "Jacob",
+            Prop: "features"
+          };
+          console.log("hei");
+          gp.execute(params).then(function(valReturn) {
+            console.log(valReturn);
+          });
+        };
+
+        /*view.popup.autoOpenEnabled = false;
+        view.on("click", function(event) {
+          // Get the coordinates of the click on the view
+          // around the decimals to 3 decimals
+          var lat = Math.round(event.mapPoint.latitude * 1000) / 1000;
+          var lon = Math.round(event.mapPoint.longitude * 1000) / 1000;
+
+          view.popup.open({
+            // Set the popup's title to the coordinates of the clicked location
+            title: "Reverse geocode: [" + lon + ", " + lat + "]",
+            location: event.mapPoint // Set the location of the popup to the clicked location
+          });
+
+          var params = {
+            location: event.mapPoint
+          };
+
+          // Execute a reverse geocode using the clicked location
+          locatorTask
+            .locationToAddress(params)
+            .then(function(response) {
+              // If an address is successfully found, show it in the popup's content
+              view.popup.content = response.address;
+            })
+            .catch(function(error) {
+              // If the promise fails and no result is found, show a generic message
+              view.popup.content = "No address was found for this location";
+            });
+        }); */
+      });
+    </script>
+
+    <!--SIDEBAR NAVIGASJON-->
+    <script>
+      function openTab(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome JS -->
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+      integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+      integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <!---BODY ELEMENT-->
+  <body>
+    <div id="wrapper">
+      <!--SIDEMENY-->
+      <div id="sidebar">
+        <!--DIV MED LOGO-->
+        <div class="sidebar-header-div">
+          <h1 class="sidebar-header">KYMA</h1>
+        </div>
+        <div id="sidebar-content">
+          <!--Knapp som klikker seg selv og navigerer til "Start analyse" fane-->
+          <button
+            id="default"
+            class="tablinks"
+            onclick="openTab(event, 'defaultTab')"
+          ></button>
+
+          <!--STARTMENY - VISER "START ANALYSE KNAPP" -->
+          <div id="defaultTab" class="tabcontent">
+            <button
+              id="startAnalyse"
+              class="tablinks"
+              onclick="openTab(event, 'omrade')"
+            >
+              Start Analyse
+            </button>
+          </div>
+          <!--FØRSTE STEG - OMRÅDE -->
+          <div id="omrade" class="tabcontent">
+            <!--Grafikk + Overskrift-->
+            <div class="fane-grafikk-div">
+              <img src="img/Side1.svg" alt="omrade" />
+              <h2 class="fane-overskrift">Område</h2>
+            </div>
+            <!--DIV MED KNAPP-->
+            <div id="omrade-button-div">
+              <button class="omrade-btn" onclick="lagSketch()">
+                Merk med polygon
+              </button>
+            </div>
+            <!--KNAPP FOR VIDERE NAVIGERING-->
+            <div class="navigering">
+              <div class="tilbake-knapp-div">
+                <img src="img/arrow.png" alt="pil" />
+                <button
+                  class="tilbake-knapp"
+                  onclick="openTab(event, 'defaultTab')"
+                >
+                  Gå tilbake
+                </button>
+              </div>
+              <button
+                class="videre-knapp"
+                onclick="openTab(event, 'kraftverk')"
+              >
+                Videre
+                <img src="img/arrow.png" alt="pil" />
+              </button>
+            </div>
+          </div>
+
+          <!--ANDRE STEG - KRAFTVERK -->
+          <div id="kraftverk" class="tabcontent">
+            <div class="fane-grafikk-div">
+              <img src="img/Side2.svg" alt="omrade" />
+              <h2 class="fane-overskrift">Kraftverk</h2>
+            </div>
+            <div id="kraftverk-input-div">
+              <ul class="list-unstyled components">
+                <li id="q1" class="active">
+                  <a
+                    href="#typeKraftverk"
+                    data-toggle="collapse"
+                    aria-expanded="false"
+                    class="dropdown-toggle"
+                  >
+                    Type kraftverk
+                  </a>
+                  <ul class="collapse list-unstyled" id="typeKraftverk">
+                    <li>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="exampleRadios"
+                          id="exampleRadios1"
+                          value="option1"
+                        />
+
+                        <label class="form-check-label" for="exampleRadios1">
+                          Default radio
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="exampleRadios"
+                          id="exampleRadios2"
+                          value="option2"
+                        />
+
+                        <label class="form-check-label" for="exampleRadios2">
+                          Second default radio
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="exampleRadios"
+                          id="exampleRadios3"
+                          value="option3"
+                        />
+                        <label class="form-check-label" for="exampleRadios3">
+                          Disabled radio
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- <li class="active">
+                  <a
+                    href="#antallBoyer"
+                    data-toggle="collapse"
+                    aria-expanded="false"
+                    class="dropdown-toggle"
+                  >
+                    Antall bøyer
+                  </a>
+                  <ul class="collapse list-unstyled" id="antallBoyer">
+                    <li>
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder="Default input"
+                      />
+                    </li>
+                  </ul>
+                </li>  -->
+                <li class="active">
+                  <a
+                    href="#min-dybde"
+                    data-toggle="collapse"
+                    aria-expanded="false"
+                    class="dropdown-toggle"
+                  >
+                    Minimum dybde
+                  </a>
+                  <ul class="collapse list-unstyled" id="min-dybde">
+                    <li>
+                      <div class="slidecontainer">
+                        <input
+                          type="range"
+                          min="50"
+                          max="1000"
+                          value="500"
+                          class="slider"
+                          id="myRange"
+                        />
+                        <p>Value: <span id="min-dybde-tekst"></span></p>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <button class="tablinks" onclick="openTab(event, 'faktor')">
+              Faktor
+            </button>
+          </div>
+
+          <!--TREDJE STEG - FAKTORER -->
+          <div id="faktor" class="tabcontent">
+            <div class="fane-grafikk-div">
+              <img src="img/Test4.svg" alt="omrade" />
+              <h2 class="fane-overskrift">Faktorer</h2>
+            </div>
+
+            <div class="range-slider">
+              <span class="faktor-tekst"> Avstand til land </span>
+              <input
+                class="range-slider__range"
+                type="range"
+                value="5"
+                min="0"
+                max="10"
+                id="range1"
+              />
+              <span class="range-slider__value">0</span>
+            </div>
+
+            <div class="range-slider">
+              <span class="faktor-tekst"> Naturvern </span>
+              <input
+                class="range-slider__range"
+                type="range"
+                value="5"
+                min="0"
+                max="10"
+                id="range2"
+              />
+              <span class="range-slider__value">0</span>
+            </div>
+
+            <div class="range-slider">
+              <span class="faktor-tekst"> Morfologi </span>
+              <input
+                class="range-slider__range"
+                type="range"
+                value="5"
+                min="0"
+                max="10"
+                id="range3"
+              />
+              <span class="range-slider__value">0</span>
+            </div>
+            <div class="range-slider">
+              <span class="faktor-tekst"> Infrastruktur </span>
+              <input
+                class="range-slider__range"
+                type="range"
+                value="5"
+                min="0"
+                max="10"
+                id="range4"
+              />
+              <span class="range-slider__value">0</span>
+            </div>
+            <button
+              id="analyze"
+              class="tablinks"
+              onclick="openTab(event, 'analyse-fane')"
+            >
+              Kjør da analyse
+            </button>
+            <button id="exit" onclick="openTab(event, 'defaultTab')">
+              Avbryt analyse
+            </button>
+          </div>
+          <div id="analyse-fane" class="tabcontent">
+            <button id="exit" onclick="openTab(event, 'faktor')">
+              Gå tilbake
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--CONTENT DIV FOR ARCGIS KART-->
+      <div id="content">
+        <button
+          type="button"
+          id="sidebarCollapse"
+          class="btn btn-info"
+          onclick="rotateArrow()"
+        >
+          <i class="fas fa-align-left"></i>
+          <span> <img id="arrow-png" src="img/arrow.png" alt="pil"/></span>
+        </button>
+        <button id="gpTool">Test</button>
+      </div>
+    </div>
+
+    <!--SCRIPT FOR Å STARTE FANE-LOOP-->
+    <script>
+      document.getElementById("default").click();
+    </script>
+
+    <!--VISER VERDI PÅ RANGE SLIDERS - FAKTOR FANE -->
+    <script>
+      var slider = document.getElementById("myRange");
+      var output = document.getElementById("min-dybde-tekst");
+      output.innerHTML = slider.value;
+
+      slider.oninput = function() {
+        output.innerHTML = this.value;
+      };
+    </script>
+
+    <script>
+      $(".collapse").collapse();
+    </script>
+
+    <!--TOOGLE SIDEMENY-->
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#sidebarCollapse").on("click", function() {
+          $("#sidebar").toggleClass("active");
+        });
+      });
+    </script>
+
+    <!--OVERFLØDIG-->
+    <script>
+      function rotateArrow() {
+        var pil = (document.getElementById("arrow-png").style.transform =
+          "rotate(180deg)");
+        //$("#sidebarCollapse").removeClass("arrow-png-right");
+        //$("#sidebarCollapse").addClass("arrow-png-left");
+      }
+    </script>
+
+    <!--KALL TIL RANGE SLIDE JS-FIL -->
+    <script src="js/range-slider.js"></script>
+  </body>
+</html>

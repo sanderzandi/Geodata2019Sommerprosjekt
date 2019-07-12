@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="226" width="236">
+  <defs>
+    <ellipse id="ellipse-1" opacity="1" rx="53" ry="53" cx="116" cy="98.00000000035755"/>
+    <mask id="mask-2" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0">
+      <rect opacity="1" x="0" y="0" width="236" height="226" fill="black"/>
+      <use xlink:href="#ellipse-1" fill="white"/>
+    </mask>
+    <ellipse id="ellipse-3" opacity="1" rx="13" ry="13" cx="65" cy="13"/>
+    <mask id="mask-4" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0">
+      <rect opacity="1" x="0" y="0" width="236" height="226" fill="black"/>
+      <use xlink:href="#ellipse-3" fill="white"/>
+    </mask>
+    <ellipse id="ellipse-5" opacity="1" rx="13" ry="13" cx="118" cy="13"/>
+    <mask id="mask-6" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0">
+      <rect opacity="1" x="0" y="0" width="236" height="226" fill="black"/>
+      <use xlink:href="#ellipse-5" fill="white"/>
+    </mask>
+    <ellipse id="ellipse-7" opacity="1" rx="13" ry="13" cx="171" cy="13"/>
+    <mask id="mask-8" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0">
+      <rect opacity="1" x="0" y="0" width="236" height="226" fill="black"/>
+      <use xlink:href="#ellipse-7" fill="white"/>
+    </mask>
+    <rect id="rect-9" opacity="1" x="78" y="13" width="27" height="1"/>
+    <mask id="mask-10" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0">
+      <rect opacity="1" x="0" y="0" width="236" height="226" fill="black"/>
+      <use xlink:href="#rect-9" fill="white"/>
+    </mask>
+    <rect id="rect-11" opacity="1" x="131" y="12" width="27" height="1"/>
+    <mask id="mask-12" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0">
+      <rect opacity="1" x="0" y="0" width="236" height="226" fill="black"/>
+      <use xlink:href="#rect-11" fill="white"/>
+    </mask>
+  </defs>
+  <g>
+    <g opacity="1">
+      <use xlink:href="#ellipse-1" fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" mask="url(#mask-2)"/>
+    </g>
+    <g opacity="1">
+      <use xlink:href="#ellipse-3" fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" mask="url(#mask-4)"/>
+    </g>
+    <g opacity="1">
+      <use xlink:href="#ellipse-5" fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" mask="url(#mask-6)"/>
+    </g>
+    <g opacity="1">
+      <use xlink:href="#ellipse-7" fill="rgb(255,255,255)" fill-opacity="1"/>
+      <use xlink:href="#ellipse-7" fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" mask="url(#mask-8)"/>
+    </g>
+    <g opacity="1">
+      <use xlink:href="#rect-9" fill="rgb(255,255,255)" fill-opacity="1"/>
+      <use xlink:href="#rect-9" fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" mask="url(#mask-10)"/>
+    </g>
+    <g opacity="1">
+      <use xlink:href="#rect-11" fill="rgb(255,255,255)" fill-opacity="1"/>
+      <use xlink:href="#rect-11" fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" mask="url(#mask-12)"/>
+    </g>
+  </g>
+</svg>
