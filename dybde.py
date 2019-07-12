@@ -17,32 +17,31 @@ with np.nditer(array) as it: # Iterate through NumpyArray
         if x != 0: # Remove values equal to 0
             depthlist.append(x) # Add other values to list
 
-depthlist.sort() # Sor list
+depthlist.sort() # Sort list
 new_np = np.array(depthlist).astype(float) # Create new NumPyArray with depth data as floats
 raster_threshold = new_np.item(int(user_threshold)) 
 #raster_threshold = new_np[int(user_threshold)]
 #arcpy.AddMessage(new_np)
-filteredRaster = arcpy.sa.ExtractByAttributes(clip,"VALUE < {0}".format(raster_threshold)) # Get values from raster...?
+filteredRaster = arcpy.sa.ExtractByAttributes(clip,"VALUE < -250") # Get values from raster...?
 points = arcpy.RasterToPoint_conversion(filteredRaster) # Convert raster to points
 arcpy.SetParameter(1,points) # Set points in ArcGis, allows for points to be drawn
 
-previousRowsList=[]
 k=0
 cursor1 = arcpy.da.SearchCursor(points,["SHAPE@X","SHAPE@Y"])
 arcpy.AddMessage(points)
 for row1 in cursor1:
-    k=k+1
     x=row1[0]
     y=row1[1]
-    previousRowsList.append([x,y])
     #arcpy.AddMessage(previousRowsList)
     cursor=arcpy.da.UpdateCursor(points,["SHAPE@X","SHAPE@Y"])
     for row in cursor:
-        if (row[0]<(x+50) and row[1]<(y+50)) and (row[0]>(x-50) and row[1]>(y-50)) and ([row1[0],row1[1]] != [row[0],row[1]]) and (row not in previousRowsList):
+        if ((row[0]<(x+50) and row[1]<(y+50)) and (row[0]>(x-50) and row[1]>(y-50)) and ([row1[0],row1[1]] != [row[0],row[1]])):
             arcpy.AddMessage(row)
             cursor.deleteRow()
+            k=k+1
     del cursor
-    #arcpy.AddMessage(row1)
+    if k == user_threshold: # DO THE EXACT FUCKING OPPOSITE OF WHAT THIS PIECE OF SHIT DOES
+        break
 del cursor1
 arcpy.AddMessage(k)
 
