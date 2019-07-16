@@ -38,174 +38,9 @@
     <script src="https://js.arcgis.com/4.12/"></script>
 
     <!-- HENTE WEBMAP + WIDGETS FRA ARCGIS API-->
-    <script>
-      require([
-        "esri/widgets/Sketch",
-        "esri/WebMap",
-        "esri/layers/GraphicsLayer",
-        "esri/views/MapView",
-        "esri/widgets/LayerList",
-        "esri/widgets/Search",
-        "esri/tasks/Geoprocessor",
-        "esri/tasks/support/FeatureSet"
-      ], function(
-        Sketch,
-        WebMap,
-        GraphicsLayer,
-        MapView,
-        LayerList,
-        Search,
-        Geoprocessor,
-        FeatureSet
-      ) {
-        /*var locatorTask = new Locator({
-          url:
-            "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
-        }); */
-        const layer = new GraphicsLayer();
+    <script src="js/arcgis.js"></script>
 
-        var map = new WebMap({
-          portalItem: {
-            id: "d63fb0befa1843788d27e39c8b0ad116"
-          }
-        });
-
-        //*** ADD ***//
-        var view = new MapView({
-          container: "content",
-          map: map
-        });
-
-        view.when(function() {
-          var layerList = new LayerList({
-            view: view
-          });
-
-          // Add widget to the top right corner of the view
-          view.ui.add(layerList, "top-right");
-        });
-
-        view.when(function() {
-          var searchWidget = new Search({ view: view });
-
-          view.ui.add(searchWidget, "top-left");
-        });
-
-        view.when(function() {
-          var sketch = new Sketch({
-            layer: layer,
-            view: view
-          });
-
-          view.ui.add(sketch, "bottom-right");
-          map.add(layer);
-          console.log(layer);
-        });
-
-        /* function hentGPtool() {
-          var gpURL =
-            "https://student2019.geodata.no/arcgis/rest/services/GPTools/GPTest/GPServer/GPTest";
-          console.log(gpURL);
-
-          var gp = new Geoprocessor(gpURL);
-          var fSet = new FeatureSet();
-          fSet.features = layer.graphics;
-
-          var params = {
-            Polygon: layer.graphics.items[0],
-            Navn: "Jacob",
-            Prop: "spatialReference"
-          };
-          console.log("hei");
-          gp.execute(params).then(function(valReturn) {
-            console.log(valReturn);
-          });
-        } */
-        document.getElementById("gpTool").onclick = function() {
-          console.log(document.getElementById("range1").value);
-
-          var radio = document.getElementById("exampleRadios1");
-          if (radio.checked) {
-            console.log(radio.value);
-          }
-
-          console.log(document.getElementById("range1").value);
-
-          var gpURL =
-            "https://student2019.geodata.no/arcgis/rest/services/GPTools/GPTest/GPServer/GPTest";
-          console.log(gpURL);
-
-          var gp = new Geoprocessor(gpURL);
-          var fSet = new FeatureSet();
-          fSet.features = layer.graphics.items[0];
-          fSet.spatialreference = console.log(fSet);
-
-          var params = {
-            Polygon: fSet,
-            Navn: "Jacob",
-            Prop: "features"
-          };
-          console.log("hei");
-          gp.execute(params).then(function(valReturn) {
-            console.log(valReturn);
-          });
-        };
-
-        /*view.popup.autoOpenEnabled = false;
-        view.on("click", function(event) {
-          // Get the coordinates of the click on the view
-          // around the decimals to 3 decimals
-          var lat = Math.round(event.mapPoint.latitude * 1000) / 1000;
-          var lon = Math.round(event.mapPoint.longitude * 1000) / 1000;
-
-          view.popup.open({
-            // Set the popup's title to the coordinates of the clicked location
-            title: "Reverse geocode: [" + lon + ", " + lat + "]",
-            location: event.mapPoint // Set the location of the popup to the clicked location
-          });
-
-          var params = {
-            location: event.mapPoint
-          };
-
-          // Execute a reverse geocode using the clicked location
-          locatorTask
-            .locationToAddress(params)
-            .then(function(response) {
-              // If an address is successfully found, show it in the popup's content
-              view.popup.content = response.address;
-            })
-            .catch(function(error) {
-              // If the promise fails and no result is found, show a generic message
-              view.popup.content = "No address was found for this location";
-            });
-        }); */
-      });
-    </script>
-
-    <!--SIDEBAR NAVIGASJON-->
-    <script>
-      function openTab(evt, cityName) {
-        // Declare all variables
-        var i, tabcontent, tablinks;
-
-        // Get all elements with class="tabcontent" and hide them
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-
-        // Get all elements with class="tablinks" and remove the class "active"
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-      }
-    </script>
+    <script src="js/sidebar.js"></script>
 
     <!-- Bootstrap CSS -->
     <link
@@ -464,7 +299,7 @@
               class="tablinks"
               onclick="openTab(event, 'analyse-fane')"
             >
-              Kjør da analyse
+              Kjør analyse
             </button>
             <button id="exit" onclick="openTab(event, 'defaultTab')">
               Avbryt analyse
@@ -479,12 +314,7 @@
       </div>
       <!--CONTENT DIV FOR ARCGIS KART-->
       <div id="content">
-        <button
-          type="button"
-          id="sidebarCollapse"
-          class="btn btn-info"
-          onclick="rotateArrow()"
-        >
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
           <i class="fas fa-align-left"></i>
           <span> <img id="arrow-png" src="img/arrow.png" alt="pil"/></span>
         </button>
@@ -492,7 +322,7 @@
       </div>
     </div>
 
-    <!--SCRIPT FOR Å STARTE FANE-LOOP-->
+    <!--STARTE LOOP-->
     <script>
       document.getElementById("default").click();
     </script>
@@ -508,28 +338,8 @@
       };
     </script>
 
-    <script>
-      $(".collapse").collapse();
-    </script>
-
     <!--TOOGLE SIDEMENY-->
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("#sidebarCollapse").on("click", function() {
-          $("#sidebar").toggleClass("active");
-        });
-      });
-    </script>
-
-    <!--OVERFLØDIG-->
-    <script>
-      function rotateArrow() {
-        var pil = (document.getElementById("arrow-png").style.transform =
-          "rotate(180deg)");
-        //$("#sidebarCollapse").removeClass("arrow-png-right");
-        //$("#sidebarCollapse").addClass("arrow-png-left");
-      }
-    </script>
+    <script src="js/sidebar-toggle.js"></script>
 
     <!--KALL TIL RANGE SLIDE JS-FIL -->
     <script src="js/range-slider.js"></script>
