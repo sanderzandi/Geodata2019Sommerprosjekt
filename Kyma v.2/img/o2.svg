@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210" height="101" viewBox="0 0 210 101">
+  <g id="Group_18" data-name="Group 18" transform="translate(-405 -696)">
+    <text id="Kraftverk" transform="translate(426 739)" fill="#fff" font-size="40" font-family="HelveticaNeue-Thin, Helvetica Neue" font-weight="200"><tspan x="13" y="39">Kraftverk</tspan></text>
+    <line id="Line_14" data-name="Line 14" x2="22" transform="translate(429.5 709.5)" fill="none" stroke="#fff" stroke-width="1"/>
+    <g id="Ellipse_20" data-name="Ellipse 20" transform="translate(405 696)" fill="#fff" stroke="#fff" stroke-width="1">
+      <circle cx="13" cy="13" r="13" stroke="none"/>
+      <circle cx="13" cy="13" r="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_21" data-name="Ellipse 21" transform="translate(451 696)" fill="#fff" stroke="#fff" stroke-width="1">
+      <circle cx="13" cy="13" r="13" stroke="none"/>
+      <circle cx="13" cy="13" r="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_22" data-name="Ellipse 22" transform="translate(497 696)" fill="none" stroke="#fff" stroke-width="1">
+      <circle cx="13" cy="13" r="13" stroke="none"/>
+      <circle cx="13" cy="13" r="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(543 696)" fill="none" stroke="#fff" stroke-width="1">
+      <circle cx="13" cy="13" r="13" stroke="none"/>
+      <circle cx="13" cy="13" r="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_24" data-name="Ellipse 24" transform="translate(589 696)" fill="none" stroke="#fff" stroke-width="1">
+      <circle cx="13" cy="13" r="13" stroke="none"/>
+      <circle cx="13" cy="13" r="12.5" fill="none"/>
+    </g>
+    <line id="Line_15" data-name="Line 15" x2="21" transform="translate(476.5 709.5)" fill="none" stroke="#fff" stroke-width="1"/>
+    <line id="Line_16" data-name="Line 16" x2="21" transform="translate(522.5 709.5)" fill="none" stroke="#fff" stroke-width="1"/>
+    <line id="Line_17" data-name="Line 17" x2="21" transform="translate(568.5 709.5)" fill="none" stroke="#fff" stroke-width="1"/>
+  </g>
+</svg>

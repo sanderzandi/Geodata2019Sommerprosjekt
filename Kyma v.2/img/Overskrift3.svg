@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="169" height="101" viewBox="0 0 169 101">
+  <g id="Group_9" data-name="Group 9" transform="translate(-680 -696)">
+    <line id="Line_7" data-name="Line 7" x2="22" transform="translate(706.5 709.5)" fill="none" stroke="#fff" stroke-width="1"/>
+    <g id="Ellipse_11" data-name="Ellipse 11" transform="translate(682 696)" fill="none" stroke="#fff" stroke-width="1">
+      <circle cx="13" cy="13" r="13" stroke="none"/>
+      <circle cx="13" cy="13" r="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_12" data-name="Ellipse 12" transform="translate(728 696)" fill="none" stroke="#fff" stroke-width="1">
+      <circle cx="13" cy="13" r="13" stroke="none"/>
+      <circle cx="13" cy="13" r="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_13" data-name="Ellipse 13" transform="translate(774 696)" fill="#fff" stroke="#fff" stroke-width="1">
+      <circle cx="13" cy="13" r="13" stroke="none"/>
+      <circle cx="13" cy="13" r="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_14" data-name="Ellipse 14" transform="translate(820 696)" fill="none" stroke="#fff" stroke-width="1">
+      <circle cx="13" cy="13" r="13" stroke="none"/>
+      <circle cx="13" cy="13" r="12.5" fill="none"/>
+    </g>
+    <line id="Line_8" data-name="Line 8" x2="21" transform="translate(753.5 709.5)" fill="none" stroke="#fff" stroke-width="1"/>
+    <line id="Line_9" data-name="Line 9" x2="21" transform="translate(799.5 709.5)" fill="none" stroke="#fff" stroke-width="1"/>
+    <text id="Faktorer" transform="translate(680 739)" fill="#fff" font-size="40" font-family="HelveticaNeue-Thin, Helvetica Neue" font-weight="200"><tspan x="18.62" y="39">Faktorer</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="219" height="54" viewBox="0 0 219 54">
+  <g id="Group_4" data-name="Group 4" transform="translate(-178 -392)">
+    <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(178 392)" fill="none" stroke="#fff" stroke-width="1">
+      <circle cx="24" cy="24" r="24" stroke="none"/>
+      <circle cx="24" cy="24" r="23.5" fill="none"/>
+    </g>
+    <text id="_4" data-name="4" transform="translate(196 405)" fill="#fff" font-size="20" font-family="HelveticaNeue, Helvetica Neue"><tspan x="0" y="19">4</tspan></text>
+    <text id="Beregn_best_egnet_plassering" data-name="Beregn best egnet plassering" transform="translate(238 392)" fill="#fff" font-size="20" font-family="HelveticaNeue-Thin, Helvetica Neue" font-weight="200"><tspan x="0" y="19">Beregn best egnet </tspan><tspan x="0" y="43">plassering</tspan></text>
+  </g>
+</svg>

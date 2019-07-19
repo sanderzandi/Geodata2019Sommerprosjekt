@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="302" height="53" viewBox="0 0 302 53">
+  <g id="Group_11" data-name="Group 11" transform="translate(-609 -278)">
+    <g id="Group_5" data-name="Group 5" transform="translate(431 90)">
+      <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(178 188)" fill="none" stroke="#fff" stroke-width="1">
+        <circle cx="24" cy="24" r="24" stroke="none"/>
+        <circle cx="24" cy="24" r="23.5" fill="none"/>
+      </g>
+      <text id="_1" data-name="1" transform="translate(196 201)" fill="#fff" font-size="20" font-family="HelveticaNeue, Helvetica Neue"><tspan x="0" y="19">1</tspan></text>
+      <text id="_1-2" data-name="1" transform="translate(196 201)" fill="#fff" font-size="20" font-family="HelveticaNeue, Helvetica Neue"><tspan x="0" y="19">1</tspan></text>
+      <text id="Velg_antall_anlegg_som_skal_plasseres_ut" data-name="Velg antall anlegg som skal plasseres ut" transform="translate(238 188)" fill="#fff" font-size="20" font-family="HelveticaNeue-Thin, Helvetica Neue" font-weight="200"><tspan x="0" y="19">Velg antall anlegg som skal </tspan><tspan x="0" y="43">plasseres ut</tspan></text>
+    </g>
+  </g>
+</svg>

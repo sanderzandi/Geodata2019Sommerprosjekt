@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>KYMA - kart forst</title>
+
+    <!-- BOOTSTRAP API KALL -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--ARCGIS CSS-->
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.12/esri/themes/light/main.css"
+    />
+    <!--GOOGLE FONT - OPEN SANS -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- EGEN CSS-->
+    <link rel="stylesheet" type="text/css" href="range-slider.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <!--ARCGIS API-->
+    <script src="https://js.arcgis.com/4.12/"></script>
+
+    <!-- HENTE WEBMAP + WIDGETS FRA ARCGIS API-->
+    <script src="js/arcgis.js"></script>
+
+    <script src="js/sidebar.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome JS -->
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+      integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+      integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <!---BODY ELEMENT-->
+  <body>
+    <div id="wrapper">
+      <!--SIDEMENY-->
+      <div id="sidebar">
+        <!--DIV MED LOGO-->
+        <div class="sidebar-header-div">
+          <h1 class="sidebar-header">KYMA</h1>
+        </div>
+        <div id="sidebar-content">
+          <!--Knapp som klikker seg selv og navigerer til "Start analyse" fane-->
+          <button
+            id="default"
+            class="tablinks"
+            onclick="openTab(event, 'defaultTab')"
+          ></button>
+
+          <!--STARTMENY - VISER "START ANALYSE KNAPP" -->
+          <div id="defaultTab" class="tabcontent">
+            <div id="intro-input-div">
+              <ul class="list-unstyled components">
+                <li id="q1" class="active">
+                  <a
+                    href="#Intro1"
+                    data-toggle="collapse"
+                    aria-expanded="false"
+                    class="dropdown-toggle"
+                  >
+                    <img src="img/Intro1.svg" alt="" />
+                  </a>
+                  <ul class="collapse list-unstyled" id="Intro1">
+                    <li>
+                      <p class="introTekst">
+                        I søkemotoren i venstre hjørne på kartet søker du enkelt
+                        opp et område hvor du har interesse av å opprette et
+                        bølgekraftverk.
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+                <li class="active">
+                  <a
+                    href="#Intro2"
+                    data-toggle="collapse"
+                    aria-expanded="false"
+                    class="dropdown-toggle"
+                  >
+                    <img src="img/Intro2.svg" alt="" />
+                  </a>
+                  <ul class="collapse list-unstyled" id="Intro2">
+                    <li>
+                      <p class="introTekst">
+                        Velg blant fire av de vanligste typene bølgekraftverk.
+                        Kraftverkstypen vil påvirke hvilke lokasjoner som er
+                        mest ideelle.
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+                <li class="active">
+                  <a
+                    href="#Intro3"
+                    data-toggle="collapse"
+                    aria-expanded="false"
+                    class="dropdown-toggle"
+                  >
+                    <img src="img/Intro3.svg" alt="" />
+                  </a>
+                  <ul class="collapse list-unstyled" id="Intro3">
+                    <li>
+                      <p class="introTekst">
+                        Ved å vekte de forskjellige faktorene som påvirker selve
+                        lokaliseringen, vil det de som er avgjørende faktorer
+                        for deg utelukkes eller fremheves.
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+                <li class="active">
+                  <a
+                    href="#Intro4"
+                    data-toggle="collapse"
+                    aria-expanded="false"
+                    class="dropdown-toggle"
+                  >
+                    <img src="img/Intro4.svg" alt="" />
+                  </a>
+                  <ul class="collapse list-unstyled" id="Intro4">
+                    <li>
+                      <p class="introTekst">
+                        Avgrense et nytt, mindre område, innenfor de potensielt
+                        ideelle områdene som analysen har presentert deg.
+                        Resultatet vil være et gitt antall bølgekraftverk,
+                        plassert på de mest optimale områdene innenfor ditt av
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <button
+              id="startAnalyse"
+              class="tablinks"
+              onclick="openTab(event, 'omrade')"
+            >
+              Start Analyse
+            </button>
+          </div>
+          <!--FØRSTE STEG - OMRÅDE -->
+          <div id="omrade" class="tabcontent">
+            <!--Grafikk + Overskrift-->
+            <div class="fane-grafikk-div">
+              <img src="img/o1.svg" alt="omrade" />
+            </div>
+            <!--DIV MED KNAPP-->
+            <div id="omrade-button-div">
+              <img src="img/omradeInfo.svg" alt="" />
+              <img src="img/giphy.gif" id="giphy" alt="" />
+            </div>
+            <!--KNAPP FOR VIDERE NAVIGERING-->
+            <div class="navigering">
+              <button
+                class="tilbake-knapp-div"
+                onclick="openTab(event, 'defaultTab')"
+              >
+                <img src="img/arrow.png" alt="pil" />
+                Tilbake
+              </button>
+              <button
+                class="videre-knapp"
+                onclick="openTab(event, 'kraftverk')"
+              >
+                Videre
+                <img src="img/arrow.png" alt="pil" />
+              </button>
+            </div>
+          </div>
+
+          <!--ANDRE STEG - KRAFTVERK -->
+          <div id="kraftverk" class="tabcontent">
+            <div class="fane-grafikk-div">
+              <img src="img/o2.svg" alt="omrade" />
+            </div>
+            <div id="kraftverk-input-div">
+              <div class="radioGroup">
+                <div class="inputGroup">
+                  <input id="radio1" name="radio" type="radio" />
+                  <label for="radio1">Svingende vannsøyle</label>
+                </div>
+                <div class="help-tip">
+                  <p>
+                    Svingende vannsøyle: <br />
+                    -Diameter: 20 <br />
+                    -Vanndybde: 0.5(Landfestet) <br />
+                    -vekt:300 tonn -nominell effekt: 500 kW
+                  </p>
+                </div>
+              </div>
+              <div class="radioGroup">
+                <div class="inputGroup">
+                  <input id="radio2" name="radio" type="radio" />
+                  <label for="radio2">Kilerennekraftverk</label>
+                </div>
+                <div class="help-tip">
+                  <p>
+                    This is the inline help tip! It can contain all kinds of
+                    HTML. Style it as you please.
+                  </p>
+                </div>
+              </div>
+              <div class="radioGroup">
+                <div class="inputGroup">
+                  <input id="radio3" name="radio" type="radio" />
+                  <label for="radio3">Linjeabsorbator</label>
+                </div>
+                <div class="help-tip">
+                  <p>
+                      Linje absorbator: <br>
+                      -lengde: 150 m <br>
+                      -Diameter: 3.5 m <br>
+                      -vekt: 700 tonn <br>
+                      -Vanndybde: > 50 <br>
+                      -nominell effekt: 750 kW
+                  </p>
+                </div>
+              </div>
+              <div class="radioGroup">
+                <div class="inputGroup">
+                  <input id="radio4" name="radio" type="radio" />
+                  <label for="radio4">Punktabsorbator</label>
+                </div>
+                <div class="help-tip">
+                  <p>
+                      <b>Punkt absorbator:</b> <br>
+                      -Diameter: 6m <br>
+                      -Vanndybde: > 50 <br>
+                      -Vekt: 100 tonn <br>
+                      -nominell effekt: 250 kW
+                    
+                    
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="navigering">
+              <button
+                class="tilbake-knapp-div"
+                onclick="openTab(event, 'omrade')"
+              >
+                <img src="img/arrow.png" alt="pil" />
+                Tilbake
+              </button>
+              <button class="videre-knapp" onclick="openTab(event, 'faktor')">
+                Videre
+                <img src="img/arrow.png" alt="pil" />
+              </button>
+            </div>
+          </div>
+
+          <!--TREDJE STEG - FAKTORER -->
+          <div id="faktor" class="tabcontent">
+            <div class="fane-grafikk-div">
+              <img src="img/o3.svg" alt="omrade" />
+            </div>
+
+            <div class="range-slider">
+              <span class="faktor-tekst"> Avstand til land </span>
+              <input
+                class="range-slider__range"
+                type="range"
+                value="5"
+                min="0"
+                max="10"
+                id="range1"
+              />
+              <span class="range-slider__value">0</span>
+            </div>
+
+            <div class="range-slider">
+              <span class="faktor-tekst"> Bølgehøyde </span>
+              <input
+                class="range-slider__range"
+                type="range"
+                value="5"
+                min="0"
+                max="10"
+                id="range2"
+              />
+              <span class="range-slider__value">0</span>
+            </div>
+
+            <div class="range-slider">
+              <span class="faktor-tekst"> Fiskeområder </span>
+              <input
+                class="range-slider__range"
+                type="range"
+                value="5"
+                min="0"
+                max="10"
+                id="range3"
+              />
+              <span class="range-slider__value">0</span>
+            </div>
+            <div class="range-slider">
+              <span class="faktor-tekst"> Gravbarhet </span>
+              <input
+                class="range-slider__range"
+                type="range"
+                value="5"
+                min="0"
+                max="10"
+                id="range4"
+              />
+              <span class="range-slider__value">0</span>
+            </div>
+            <div class="range-slider">
+              <span class="faktor-tekst"> Havdybde </span>
+              <input
+                class="range-slider__range"
+                type="range"
+                value="5"
+                min="0"
+                max="10"
+                id="range5"
+              />
+              <span class="range-slider__value">0</span>
+            </div>
+            <div class="range-slider">
+              <span class="faktor-tekst"> Låssettingsplasser </span>
+              <input
+                class="range-slider__range"
+                type="range"
+                value="5"
+                min="0"
+                max="10"
+                id="range6"
+              />
+              <span class="range-slider__value">0</span>
+            </div>
+
+            <div class="range-slider">
+              <span class="faktor-tekst"> Sårbare områder </span>
+              <input
+                class="range-slider__range"
+                type="range"
+                value="5"
+                min="0"
+                max="10"
+                id="range8"
+              />
+              <span class="range-slider__value">0</span>
+            </div>
+            <div class="navigering">
+              <button
+                class="tilbake-knapp-div"
+                onclick="openTab(event, 'kraftverk')"
+              >
+                <img src="img/arrow.png" alt="pil" />
+                Tilbake
+              </button>
+              <button
+                id="analyze"
+                class="run-knapp"
+                onclick="openTab(event, 'analyse-fane')"
+              >
+                Gjennomfør grunnanalyse
+                <img src="img/arrow.png" alt="pil" />
+              </button>
+            </div>
+          </div>
+          <!-- BESTE PLASSERING FANE -->
+          <div id="analyse-fane" class="tabcontent">
+            <div class="fane-grafikk-div4">
+              <img src="img/o4.svg" alt="omrade" />
+            </div>
+
+            <div class="anleggInput">
+              <img src="img/plassering-info1.svg" alt="" />
+              <input
+                type="number"
+                id="antallAnlegg"
+                min="1"
+                max="20"
+                value="5"
+              />
+              <img src="img/plassering-info2.svg" alt="" />
+              <img src="img/giphy2.gif" alt="" id="giphy2" />
+            </div>
+
+            <div class="navigering">
+              <button
+                class="tilbake-knapp-div"
+                onclick="openTab(event, 'faktor')"
+              >
+                <img src="img/arrow.png" alt="pil" />
+                Tilbake
+              </button>
+              <button
+                class="run-knapp"
+                id="gpTool"
+                onclick="openTab(event, 'resultat-fane')"
+              >
+                Finn beste plassering
+                <img src="img/arrow.png" alt="pil" />
+              </button>
+            </div>
+          </div>
+          <div id="resultat-fane" class="tabcontent">
+            <div class="fane-grafikk-div4">
+              <img src="img/o5.svg" alt="omrade" />
+            </div>
+            <!-- BESTE PLASSERING DIV -->
+            <div id="resultat-display-div">
+              <ul class="list-unstyled components">
+                <li id="q1" class="active">
+                  <a
+                    href="#Intro1"
+                    data-toggle="collapse"
+                    aria-expanded="false"
+                    class="dropdown-toggle"
+                  >
+                    <img src="img/Group 26.svg" alt="" />
+                  </a>
+                  <ul class="collapse list-unstyled" id="Intro1">
+                    <li>
+                      <ul class="resultContent">
+                        <li style="list-style-image: url(img/sea.svg);">
+                          <p>Bølgepotensiale: 332,16 kW/m</p>
+                        </li>
+
+                        <li style="list-style-image: url(img/distance.svg);">
+                          Avstand fra land: 110m
+                        </li>
+
+                        <li style="list-style-image: url(img/depth.svg);">
+                          Havdybe: 52,3m
+                        </li>
+
+                        <li style="list-style-image: url(img/seaType.svg);">
+                          Bunnsedimenter: Morene
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="active">
+                  <a
+                    href="#Intro2"
+                    data-toggle="collapse"
+                    aria-expanded="false"
+                    class="dropdown-toggle"
+                  >
+                    <img src="img/Group 27.svg" alt="" />
+                  </a>
+                  <ul class="collapse list-unstyled" id="Intro2">
+                    <li>
+                      <ul class="resultContent">
+                        <li style="list-style-image: url(img/sea.svg);">
+                          <p>Bølgepotensiale: 332,16 kW/m</p>
+                        </li>
+
+                        <li style="list-style-image: url(img/distance.svg);">
+                          Avstand fra land: 110m
+                        </li>
+
+                        <li style="list-style-image: url(img/depth.svg);">
+                          Havdybe: 52,3m
+                        </li>
+
+                        <li style="list-style-image: url(img/seaType.svg);">
+                          Bunnsedimenter: Morene
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="active">
+                  <a
+                    href="#Intro3"
+                    data-toggle="collapse"
+                    aria-expanded="false"
+                    class="dropdown-toggle"
+                  >
+                    <img src="img/Group 28.svg" alt="" />
+                  </a>
+                  <ul class="collapse list-unstyled" id="Intro3">
+                    <li>
+                      <ul class="resultContent">
+                        <li style="list-style-image: url(img/sea.svg);">
+                          <p>Bølgepotensiale: 332,16 kW/m</p>
+                        </li>
+
+                        <li style="list-style-image: url(img/distance.svg);">
+                          Avstand fra land: 110m
+                        </li>
+
+                        <li style="list-style-image: url(img/depth.svg);">
+                          Havdybe: 52,3m
+                        </li>
+
+                        <li style="list-style-image: url(img/seaType.svg);">
+                          Bunnsedimenter: Morene
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="active">
+                  <a
+                    href="#Intro4"
+                    data-toggle="collapse"
+                    aria-expanded="false"
+                    class="dropdown-toggle"
+                  >
+                    <img src="img/Group 29.svg" alt="" />
+                  </a>
+                  <ul class="collapse list-unstyled" id="Intro4">
+                    <li>
+                      <ul class="resultContent">
+                        <li style="list-style-image: url(img/sea.svg);">
+                          <p>Bølgepotensiale: 332,16 kW/m</p>
+                        </li>
+
+                        <li style="list-style-image: url(img/distance.svg);">
+                          Avstand fra land: 110m
+                        </li>
+
+                        <li style="list-style-image: url(img/depth.svg);">
+                          Havdybe: 52,3m
+                        </li>
+
+                        <li style="list-style-image: url(img/seaType.svg);">
+                          Bunnsedimenter: Morene
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="navigering">
+              <button
+                class="tilbake-knapp-div"
+                onclick="openTab(event, 'analyse-fane')"
+              >
+                <img src="img/arrow.png" alt="pil" />
+                Tilbake
+              </button>
+              <button id="exit">Avbryt analyse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--CONTENT DIV FOR ARCGIS KART-->
+      <div id="content">
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+          <i class="fas fa-align-left"></i>
+          <span> <img id="arrow-png" src="img/arrow.png" alt="pil"/></span>
+        </button>
+      </div>
+    </div>
+
+    <!--STARTE LOOP-->
+    <script>
+      document.getElementById("default").click();
+    </script>
+
+    <!--TOOGLE SIDEMENY-->
+    <script src="js/sidebar-toggle.js"></script>
+
+    <!--KALL TIL RANGE SLIDE JS-FIL -->
+    <script src="js/range-slider.js"></script>
+  </body>
+</html>

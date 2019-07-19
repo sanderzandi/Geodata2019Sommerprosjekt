@@ -1,0 +1,711 @@
+html,
+body,
+#wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+#wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+#content {
+  width: 100%;
+  height: 100vh;
+}
+
+#sidebar {
+  z-index: 99;
+  top: 0;
+  left: 0;
+  height: 100vh;
+
+  min-width: 320px;
+  max-width: 320px;
+  transition: all 0.3s;
+  flex-direction: column;
+  background: linear-gradient(207deg, #073548, #055475);
+  background-size: 400% 400%;
+  font-family: "Open Sans", sans-serif;
+  -webkit-animation: AnimationName 6s ease infinite;
+  -moz-animation: AnimationName 6s ease infinite;
+  animation: AnimationName 6s ease infinite;
+}
+
+.sidebar-header {
+  color: white;
+  padding: 3%;
+  text-align: center;
+  height: 10%;
+  margin-top: 40px;
+}
+
+#sidebar.active {
+  margin-left: -320px;
+}
+
+.esri-layer-list {
+  z-index: 2000;
+  margin-right: 20px;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  background-color: #333333;
+  text-align: center;
+  margin: 10%;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  color: #fff;
+  float: left;
+  border-bottom: 1px solid #fff;
+  border-top: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+  border-bottom: none;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #333333;
+}
+
+/* Style the tab content */
+.tabcontent {
+  padding: 6px 12px;
+  border-top: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#omrade,
+#kraftverk,
+#faktor {
+  padding: 20px;
+}
+
+#omrade-button-div {
+  margin-top: 100px;
+  justify-content: center;
+}
+
+#omrade-button-div img {
+  margin-bottom: 40px;
+  justify-content: center;
+}
+
+.omrade-btn {
+  border: 1px solid #fff;
+  color: white;
+  background-color: Transparent;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 40px 10px 10px 30px;
+  width: 75%;
+}
+
+#default {
+  display: none;
+}
+
+#defaultTab {
+  padding-top: 100px;
+  width: 85%;
+}
+
+#startAnalyse {
+  background-color: #387d7a; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 25px;
+  width: 75%;
+  outline: none;
+}
+
+#sidebar-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90%;
+  font-family: "Open Sans";
+}
+
+.tablinks {
+  background-color: #6fa487; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 25px;
+  width: 75%;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+#typeKraftverk {
+  font-family: "Open Sans Light";
+}
+
+#typeKraftverk,
+#antallBoyer,
+#min-dybde {
+  margin-top: 10px;
+}
+
+#typeKraftverk label {
+  color: #fff;
+}
+
+.form-check {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.form-check-label {
+  color: #fff;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  padding-left: 1px;
+  font-size: 1.1em;
+  display: block;
+}
+
+#sidebar ul li.active > a,
+a[aria-expanded="false"] {
+  color: #fff;
+}
+
+#sidebar.active {
+  margin-left: -320px;
+}
+
+.active {
+  margin-top: 20px;
+}
+
+.slidecontainer {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+}
+
+#min-dybde-tekst {
+  color: #fff;
+}
+
+.faktor-tekst {
+  color: #fff;
+}
+
+.fane-grafikk-div {
+  margin: 10px 30px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.fane-grafikk-div4 {
+  margin: 10px;
+  margin-top: 10px;
+}
+.fane-overskrift {
+  margin-left: -5px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  font-family: "Open Sans Light", "Helvetica Neue", sans-serif;
+  color: #fff;
+  font-size: 40px;
+}
+
+#exit {
+  background-color: #dd3434; /* Green */
+  display: flex;
+  border: 1px solid #fff;
+  color: white;
+
+  text-align: center;
+  text-decoration: none;
+
+  margin: 10px;
+  height: 70px;
+  width: 120px;
+}
+
+.esri-view-user-storage {
+  position: absolute;
+  z-index: 99;
+}
+
+#sidebarCollapse {
+  margin-top: 450px;
+  height: 100px;
+  width: 40px;
+  padding: 0;
+
+  border-radius: 0%;
+  background: linear-gradient(207deg, #073548, #055475);
+  background-size: 400% 400%;
+
+  -webkit-animation: AnimationName 6s ease infinite;
+  -moz-animation: AnimationName 6s ease infinite;
+  animation: AnimationName 6s ease infinite;
+}
+
+#arrow-png {
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  transform: rotate(180deg);
+}
+
+.svg-inline--fa.fa-w-14 {
+  display: none;
+}
+
+.esri-zoom {
+  z-index: 2000;
+}
+
+.esri-print {
+  margin-left: 50px;
+  width: 200px;
+}
+
+.esri-ui-corner .esri-expand .esri-widget--panel,
+.esri-ui-corner .esri-expand .esri-widget--panel-height-only,
+.esri-ui-corner .esri-component.esri-widget--panel {
+  width: 200px;
+}
+
+.navigering {
+  display: flex;
+  position: absolute;
+  bottom: 60px;
+  align-items: center;
+}
+
+.videre-knapp {
+  display: flex;
+  border: 1px solid #fff;
+  color: white;
+  background-color: transparent;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 10px;
+  height: 70px;
+  width: 120px;
+  justify-content: center;
+}
+.videre-knapp img {
+  height: 30px;
+  width: 30px;
+}
+
+.run-knapp {
+  background-color: #387d7a; /* Green */
+  display: flex;
+  border: 1px solid #fff;
+  color: white;
+
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  margin: 10px;
+  height: 70px;
+  width: 120px;
+}
+
+.run-knapp img {
+  height: 30px;
+  width: 30px;
+}
+
+.tilbake-knapp-div {
+  display: flex;
+  border: 1px solid #fff;
+  color: white;
+  background-color: transparent;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 10px;
+  height: 70px;
+  width: 120px;
+  justify-content: center;
+}
+.tilbake-knapp-div img {
+  height: 30px;
+  width: 30px;
+  transform: rotate(180deg);
+  position: relative;
+  margin-left: -20px;
+}
+
+button:focus {
+  outline: none;
+}
+
+.introTekst {
+  color: #fff;
+}
+
+.radioGroup {
+  position: relative;
+  display: flex;
+}
+
+.inputGroup {
+  display: block;
+  margin-top: 30px;
+  position: relative;
+  width: 250px;
+}
+.inputGroup label {
+  padding: 12px 30px;
+  width: 100%;
+  display: block;
+  text-align: left;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: color 200ms ease-in;
+  overflow: hidden;
+}
+.inputGroup label:before {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  content: "";
+  border-style: solid;
+  border-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale3d(1, 1, 1);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  z-index: -1;
+}
+.inputGroup label:after {
+  width: 24px;
+  height: 24px;
+  content: "";
+  border: 2px solid #d1d7dc;
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='5 5 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+  background-repeat: no-repeat;
+  background-position: 2px 3px;
+  border-radius: 50%;
+  z-index: 2;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: all 200ms ease-in;
+}
+.inputGroup input:checked ~ label {
+  color: #fff;
+}
+.inputGroup input:checked ~ label:before {
+  transform: translate(-50%, -50%) scale3d(56, 56, 1);
+  opacity: 1;
+}
+.inputGroup input:checked ~ label:after {
+  background-color: #387d7a;
+  border-color: #387d7a;
+}
+.inputGroup input {
+  width: 24px;
+  height: 32px;
+  order: 1;
+  z-index: 2;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  visibility: hidden;
+}
+
+#kraftverk-input-div {
+  margin-top: 80px;
+}
+
+.help-tip {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  text-align: center;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  line-height: 26px;
+  cursor: default;
+  margin-top: 22px;
+  margin-right: -20px;
+  margin-left: -20px;
+  z-index: 10;
+}
+
+.help-tip:before {
+  content: "?";
+  font-weight: bold;
+  color: #fff;
+}
+
+.help-tip:hover p {
+  display: block;
+  transform-origin: 100% 0%;
+
+  -webkit-animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.help-tip p {
+  /* The tooltip */
+  display: none;
+  text-align: left;
+  background-color: #1e2021;
+  padding: 20px;
+  width: 300px;
+  position: absolute;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  right: -4px;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.help-tip p:before {
+  /* The pointer of the tooltip */
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-bottom-color: #1e2021;
+  right: 10px;
+  top: -12px;
+}
+
+.help-tip p:after {
+  /* Prevents the tooltip from being hidden */
+  width: 100%;
+  height: 40px;
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 0;
+}
+
+.anleggInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 60px;
+}
+
+#giphy {
+  margin-left: 20px;
+}
+
+#giphy2 {
+  width: 260px;
+  height: 180px;
+}
+
+#antallAnlegg {
+  margin-top: 10px;
+  width: 100px;
+  text-align: center;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: #fff;
+  background-color: transparent;
+  color: #fff;
+}
+
+.anleggInput img {
+  margin-top: 20px;
+}
+
+#bestPlass {
+  font-size: 12px;
+}
+
+.resultContent {
+  color: #fff;
+}
+
+.resultContent li {
+  margin-bottom: 5px;
+  margin-left: 20px;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* CSS animation */
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 86% 0%;
+  }
+  50% {
+    background-position: 15% 100%;
+  }
+  100% {
+    background-position: 86% 0%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 86% 0%;
+  }
+  50% {
+    background-position: 15% 100%;
+  }
+  100% {
+    background-position: 86% 0%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 86% 0%;
+  }
+  50% {
+    background-position: 15% 100%;
+  }
+  100% {
+    background-position: 86% 0%;
+  }
+}
